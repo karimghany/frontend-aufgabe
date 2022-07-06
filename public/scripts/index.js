@@ -108,7 +108,9 @@ function sendRequest(city) {
     })
     // Display error message on error
     .catch((error) => {
-      error_element.innerHTML = error;
+      error_element.innerHTML =
+        "Ein Fehler ist aufgetreten. Versuchen Sie es nach erneutem Laden der Seite erneut.";
+      console.log(error);
     });
 }
 
