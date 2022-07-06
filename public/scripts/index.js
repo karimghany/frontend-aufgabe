@@ -4,6 +4,7 @@ let weather_input;
 let weather_data_time;
 let error_element;
 let saved_weather_button;
+let initial_request;
 let date;
 let hours;
 let mins;
@@ -48,6 +49,16 @@ function getLocation() {
 // Add city name next to time in weather info
 function addCityToWeatherDataInfo(city_name) {
   weather_data_time.innerHTML = city_name + " " + weather_data_time.innerHTML;
+}
+
+// Check if request needs to be saved with early return
+function checkStorage(city_name) {
+  if (sessionStorage.getItem("city") != undefined) {
+    return;
+  } else {
+    sessionStorage.setItem("city", city_name);
+    enableSavedButton(city_name);
+  }
 }
 
 // Get and display current time
@@ -105,6 +116,12 @@ function sendRequest(city) {
       document
         .getElementsByClassName("nav__weather-data-icon")[0]
         .lastElementChild.setAttribute("xlink:href", icon_id);
+      if (initial_request == true) {
+        initial_request = false;
+        return;
+      } else {
+        checkStorage(city);
+      }
     })
     // Display error message on error
     .catch((error) => {
@@ -131,22 +148,11 @@ function enableSavedButton(city_name) {
   saved_weather_button.addEventListener("click", onSavedSubmit);
 }
 
-// Check if request needs to be saved with early return
-function checkStorage(city_name) {
-  if (sessionStorage.getItem("city") != undefined) {
-    return;
-  } else {
-    sessionStorage.setItem("city", city_name);
-    enableSavedButton(city_name);
-  }
-}
-
 // Submit request using city name or location
 function onSubmit(e) {
   e.preventDefault();
   if (e.submitter.classList[1] == "weather__search__button") {
     city = weather_input.value;
-    checkStorage(city);
     sendRequest(city);
   } else {
     // Request is send in getLocation method if successful
@@ -192,6 +198,7 @@ function onLoad() {
     enableSavedButton(city);
   } else {
     city = weather_input.value;
+    initial_request = true;
     sendRequest(city);
   }
 }

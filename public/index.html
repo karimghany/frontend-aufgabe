@@ -937,7 +937,7 @@
 	</div>
 	<script>
 		// Variables for Autocomplete
-		let suggestions = document.getElementsByClassName("suggestions")[0];
+		let suggestions;
 		let input_value;
 		let counter;
 		// Access Token is public and can therefore be exposed in frontend without limiting security
@@ -952,6 +952,7 @@
 		geocoder.addTo('#geocoder');
 
 		geocoder.on('result', (e) => {
+			suggestions = document.getElementsByClassName("suggestions")[0];
 			input_value = e.result.text_de;
 			geocoder.setInput(input_value);
 			sendRequest(e.result.text_de);
@@ -965,12 +966,9 @@
 
 		// Countering third-party script to ensure functionality
 		function clearOnEnter(e) {
-			if (e.key === "Enter" && counter == 1) {
+			if (e.key === "Enter" && document.querySelectorAll("#geocoder input")[0].value.includes(",")) {
 				geocoder.setInput("");
 				document.querySelectorAll("#geocoder input")[0].removeEventListener("keyup", clearOnEnter);
-				counter = 0;
-			} else {
-				counter = 1;
 			}
 		};
 
