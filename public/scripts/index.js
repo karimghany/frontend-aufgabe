@@ -155,7 +155,7 @@ function enableSavedButton(city_name) {
 // Submit request using city name or location
 function onSubmit(e) {
   e.preventDefault();
-  if (e.submitter.classList[1] == "weather__search__button") {
+  if (e.submitter.classList.contains("weather__search__button")) {
     city = weather_input.value;
     sendRequest(city);
   } else {
@@ -190,7 +190,7 @@ function onLoad() {
   document
     .getElementsByClassName("nav__weather-form")[0]
     .addEventListener("submit", onSubmit);
-  weather_input = document.querySelectorAll("#geocoder input")[0];
+  weather_input = document.querySelector("#geocoder input");
   weather_input.classList.add("search__input");
   weather_input.value = "Hamburg";
   weather_data_time = document.getElementsByClassName(

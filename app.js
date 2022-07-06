@@ -17,7 +17,7 @@ const limiter = rateLimit({
 });
 
 // Apply to all requests
-app.use(limiter);
+app.use("/weather", limiter);
 
 // Allow CORS from any origin
 app.use(cors());

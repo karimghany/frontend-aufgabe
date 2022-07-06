@@ -940,6 +940,7 @@
 		let suggestions;
 		let input_value;
 		let counter;
+		let input
 		// Access Token is public and can therefore be exposed in frontend without limiting security
 		const geocoder = new MapboxGeocoder({
 			accessToken: 'pk.eyJ1IjoiYW51Yml0c3R1ZGlvcyIsImEiOiJja205cGl5enMxanIyMnBueGZ1c2JrdHE3In0.ifTtS4gFVgqTPFM4zR8ZhA',
@@ -952,7 +953,8 @@
 		geocoder.addTo('#geocoder');
 
 		// Reset the type from text to search
-		document.querySelectorAll("#geocoder input")[0].setAttribute("type", "search");
+		input = document.querySelector("#geocoder input");
+		input.setAttribute("type", "search");
 
 		geocoder.on('result', (e) => {
 			suggestions = document.getElementsByClassName("suggestions")[0];
@@ -961,19 +963,19 @@
 			sendRequest(e.result.text_de);
 			suggestions.remove();
 			geocoder.setAutocomplete(false);
-			document.querySelectorAll("#geocoder input")[0].addEventListener("keydown", clearOnEnter);
-			document.querySelectorAll("#geocoder input")[0].addEventListener("input", restoreAutocomplete);
+			input.addEventListener("keydown", clearOnEnter);
+			input.addEventListener("input", restoreAutocomplete);
 			// Browser support
-			document.querySelectorAll("#geocoder input")[0].addEventListener("keypress", clearOnEnter);
-			document.querySelectorAll("#geocoder input")[0].addEventListener("propertychange", restoreAutocomplete);
+			input.addEventListener("keypress", clearOnEnter);
+			input.addEventListener("propertychange", restoreAutocomplete);
 		});
 
 		// Countering third-party script to ensure functionality
 		function clearOnEnter(e) {
-			if (e.key === "Enter" && document.querySelectorAll("#geocoder input")[0].value.includes(",")) {
+			if (e.key === "Enter" && input.value.includes(",")) {
 				geocoder.setInput("");
-				document.querySelectorAll("#geocoder input")[0].removeEventListener("keydown", clearOnEnter);
-				document.querySelectorAll("#geocoder input")[0].removeEventListener("keypress", clearOnEnter);
+				input.removeEventListener("keydown", clearOnEnter);
+				input.removeEventListener("keypress", clearOnEnter);
 			}
 		};
 
@@ -981,8 +983,8 @@
 		function restoreAutocomplete() {
 			document.getElementsByClassName("suggestions-wrapper")[0].append(suggestions);
 			geocoder.setAutocomplete(true);
-			document.querySelectorAll("#geocoder input")[0].removeEventListener("change", restoreAutocomplete);
-			document.querySelectorAll("#geocoder input")[0].removeEventListener("propertychange", restoreAutocomplete);
+			input.removeEventListener("change", restoreAutocomplete);
+			input.removeEventListener("propertychange", restoreAutocomplete);
 		}
 	</script>
 </body>
