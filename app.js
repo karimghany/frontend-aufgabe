@@ -12,6 +12,8 @@ const path = require("path");
 const limiter = rateLimit({
   windowMs: 60000, // 1 minute
   max: 20, // limit each IP to 20 requests per minute
+  message:
+    "In der letzten Minute wurden über 20 Wetter-Anfragen gesendet. Laden Sie die Seite neu und versuchen Sie es nach einer Minute erneut.", // Fehlermeldung bei Limit-Überschreitung
 });
 
 // Apply to all requests
