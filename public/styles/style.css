@@ -173,10 +173,27 @@ button.nav__weather-saved--visible {
 
 .suggestions {
   top: 36px !important;
+  background-color: var(--z-background-95) !important;
+}
+
+.suggestions li {
+  font-family: "TabletGothic", "Helvetica Neue", Helvetica, Arial, FreeSans,
+    sans-serif !important;
+  width: 100% !important;
+}
+
+.suggestions .active a {
+  background: var(--z-background-35) !important;
+  color: var(--z-color-20) !important;
+}
+
+.suggestions li a {
+  color: var(--z-color-45) !important;
 }
 
 .mapboxgl-ctrl-geocoder--icon,
-.mapboxgl-ctrl-geocoder--pin-right {
+.mapboxgl-ctrl-geocoder--pin-right,
+.mapboxgl-ctrl-geocoder--powered-by {
   display: none !important;
 }
 

@@ -951,6 +951,9 @@
 		});
 		geocoder.addTo('#geocoder');
 
+		// Reset the type from text to search
+		document.querySelectorAll("#geocoder input")[0].setAttribute("type", "search");
+
 		geocoder.on('result', (e) => {
 			suggestions = document.getElementsByClassName("suggestions")[0];
 			input_value = e.result.text_de;
@@ -958,9 +961,10 @@
 			sendRequest(e.result.text_de);
 			suggestions.remove();
 			geocoder.setAutocomplete(false);
-			document.querySelectorAll("#geocoder input")[0].addEventListener("keyup", clearOnEnter);
+			document.querySelectorAll("#geocoder input")[0].addEventListener("keydown", clearOnEnter);
 			document.querySelectorAll("#geocoder input")[0].addEventListener("input", restoreAutocomplete);
-			// IE support
+			// Browser support
+			document.querySelectorAll("#geocoder input")[0].addEventListener("keypress", clearOnEnter);
 			document.querySelectorAll("#geocoder input")[0].addEventListener("propertychange", restoreAutocomplete);
 		});
 
@@ -968,7 +972,8 @@
 		function clearOnEnter(e) {
 			if (e.key === "Enter" && document.querySelectorAll("#geocoder input")[0].value.includes(",")) {
 				geocoder.setInput("");
-				document.querySelectorAll("#geocoder input")[0].removeEventListener("keyup", clearOnEnter);
+				document.querySelectorAll("#geocoder input")[0].removeEventListener("keydown", clearOnEnter);
+				document.querySelectorAll("#geocoder input")[0].removeEventListener("keypress", clearOnEnter);
 			}
 		};
 
@@ -977,6 +982,7 @@
 			document.getElementsByClassName("suggestions-wrapper")[0].append(suggestions);
 			geocoder.setAutocomplete(true);
 			document.querySelectorAll("#geocoder input")[0].removeEventListener("change", restoreAutocomplete);
+			document.querySelectorAll("#geocoder input")[0].removeEventListener("propertychange", restoreAutocomplete);
 		}
 	</script>
 </body>
