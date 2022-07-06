@@ -61,6 +61,31 @@ function checkStorage(city_name) {
   }
 }
 
+// Applying gathered data to the weather widget
+function displayWeatherData(data, city) {
+  if (data.city != undefined) {
+    weather_input.value = data.city;
+    checkStorage(data.city);
+    addCityToWeatherDataInfo(data.city);
+  } else {
+    addCityToWeatherDataInfo(city);
+  }
+  document.getElementsByClassName("nav__weather-data-degrees")[0].innerHTML =
+    Math.round(data.temp);
+  document.getElementsByClassName("nav__weather-data-text")[0].innerHTML =
+    data.description;
+  icon_id = "#" + data.icon;
+  document
+    .getElementsByClassName("nav__weather-data-icon")[0]
+    .lastElementChild.setAttribute("xlink:href", icon_id);
+  if (initial_request == true) {
+    initial_request = false;
+    return;
+  } else {
+    checkStorage(city);
+  }
+}
+
 // Get and display current time
 function getTime() {
   date = new Date();
@@ -100,28 +125,7 @@ function sendRequest(city) {
     .then((response) => response.json())
     // Display the data on success
     .then((data) => {
-      if (data.city != undefined) {
-        weather_input.value = data.city;
-        checkStorage(data.city);
-        addCityToWeatherDataInfo(data.city);
-      } else {
-        addCityToWeatherDataInfo(city);
-      }
-      document.getElementsByClassName(
-        "nav__weather-data-degrees"
-      )[0].innerHTML = Math.round(data.temp);
-      document.getElementsByClassName("nav__weather-data-text")[0].innerHTML =
-        data.description;
-      icon_id = "#" + data.icon;
-      document
-        .getElementsByClassName("nav__weather-data-icon")[0]
-        .lastElementChild.setAttribute("xlink:href", icon_id);
-      if (initial_request == true) {
-        initial_request = false;
-        return;
-      } else {
-        checkStorage(city);
-      }
+      displayWeatherData(data, city);
     })
     // Display error message on error
     .catch((error) => {
