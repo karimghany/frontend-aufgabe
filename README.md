@@ -10,7 +10,11 @@ In diesem Repository liegt der Code, für die in "Runde 2" gestellte Frontend-Au
 
 ### Starten der Middleware
 
-Um die Middleware erfolgreich zu starten und das Frontend zu inspizieren, muss das repository gecloned werden und anschließend eine `.env`-Datei im root-Ordner erstellt werden (Inhalt: `OPENWEATHERMAP_API_KEY={Der API-Schlüssel}`). Anschließend muss in der Konsole zum root-Verzeichnis des Codes navigiert und die nötigen Dependencies mit folgendem Befehl installiert werden:
+Um die Middleware erfolgreich zu starten und das Frontend zu inspizieren, muss das repository gecloned werden und anschließend eine `.env`-Datei im root-Ordner erstellt werden mit dem Inhalt:
+
+`OPENWEATHERMAP_API_KEY={Der API-Schlüssel}`
+
+Anschließend muss in der Konsole zum root-Verzeichnis des Codes navigiert und die nötigen Dependencies mit folgendem Befehl installiert werden:
 
 ```bash
 npm i
