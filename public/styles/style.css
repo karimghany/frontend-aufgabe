@@ -2,7 +2,7 @@
   Contents
     1. General
     2. Weather Widget
-    3. Geocoder Override
+    3. Geocoder Overrides
     4. Media Queries
 */
 
@@ -148,7 +148,7 @@ button.nav__weather-saved--visible {
   color: var(--z-color-alert);
 }
 
-/* === 3.Geocoder Override === */
+/* === 3.Geocoder Overrides === */
 
 #geocoder {
   width: calc(100% - 70px);
