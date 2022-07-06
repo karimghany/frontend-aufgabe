@@ -197,6 +197,7 @@ function onLoad() {
     "nav__weather-data-time"
   )[0];
   error_element = document.getElementsByClassName("error")[0];
+  // Check session storage for previously used city
   if (sessionStorage.getItem("city") != undefined) {
     onSavedSubmit();
     enableSavedButton(city);

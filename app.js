@@ -13,7 +13,7 @@ const limiter = rateLimit({
   windowMs: 60000, // 1 minute
   max: 20, // limit each IP to 20 requests per minute
   message:
-    "In der letzten Minute wurden über 20 Wetter-Anfragen gesendet. Laden Sie die Seite neu und versuchen Sie es nach einer Minute nochmal.", // Fehlermeldung bei Limit-Überschreitung
+    "In der letzten Minute wurden über 20 Wetter-Anfragen gesendet und das Limit überschritten. Laden Sie die Seite neu und versuchen Sie es nach einer Minute nochmal.", // Fehlermeldung bei Limit-Überschreitung
 });
 
 // Apply to all requests
@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, "/public")));
 
 // Handle requests to new weather-endpoint and get results from API
 app.get("/weather", async (req, res) => {
-  /* Convert city name to location via geocoding or take coords if location was used */
+  // Convert city name to location via geocoding or take coords if location was used
   let city;
   try {
     let lat;
@@ -46,7 +46,7 @@ app.get("/weather", async (req, res) => {
       lat = req.query.lat;
       lon = req.query.lon;
 
-      /* Use reverse geocoding if location was used for ability to display city name later */
+      // Use reverse geocoding if location was used for ability to display city name later
       const response = await fetch(
         `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&appid=${process.env.OPENWEATHERMAP_API_KEY}`
       );
@@ -55,7 +55,7 @@ app.get("/weather", async (req, res) => {
 
       city = results[0].local_names.de;
     }
-    /* Get actual weather data and return only necessary results */
+    // Get actual weather data and return only necessary results
     try {
       const response = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.OPENWEATHERMAP_API_KEY}&units=metric&lang=de`
@@ -71,14 +71,14 @@ app.get("/weather", async (req, res) => {
         city: city,
       });
     } catch (err) {
-      /* Catch errors getting weather data */
+      // Catch errors getting weather data
       return res.status(500).json({
         success: false,
         message: err.message,
       });
     }
   } catch (err) {
-    /* Catch error for direct and reverse geocoding */
+    // Catch error for direct and reverse geocoding
     return res.status(500).json({
       success: false,
       message: err.message,
