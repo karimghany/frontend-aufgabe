@@ -1,0 +1,179 @@
+/*
+  Contents
+    1. General
+    2. Weather Widget
+    3. Geocoder Override
+    4. Media Queries
+*/
+
+/* === 1.General === */
+
+.page__content {
+  min-height: 100vh;
+}
+
+.heading {
+  font-size: 2rem;
+  letter-spacing: 0.03em;
+  padding-left: 1.25rem;
+}
+
+.nav__metadata {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column-reverse;
+}
+
+/* === 2.Weather Widget === */
+
+.nav__weather {
+  width: 240px;
+  padding-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav__weather-form {
+  display: flex;
+  margin-bottom: -1px;
+}
+
+.weather__search__button {
+  border-radius: 0 !important;
+}
+
+.weather__location__button {
+  border-radius: 0 4px 0 0 !important;
+  border-left: 0 !important;
+}
+
+.nav__weather-data {
+  display: flex;
+  height: 42px;
+  padding: 6px 12px;
+  border: 1px solid rgb(var(--z-color-45--rgb), 0.21);
+  background-color: var(--z-background-95);
+  border-radius: 0 0 4px 4px;
+}
+
+.nav__weather-data-icon {
+  fill: var(--z-color-primary);
+}
+
+.nav__weather-data-temperature {
+  display: flex;
+  padding-left: 10px;
+}
+
+.nav__weather-data-degrees {
+  margin: 0;
+  font-size: 1.6em;
+  line-height: 1.2em;
+}
+
+.celsius {
+  font-size: 0.8em;
+  line-height: 1.7em;
+}
+
+.nav__weather-data-info {
+  margin-left: auto;
+  padding-top: 2px;
+}
+
+.nav__weather-data-time,
+.nav__weather-data-text {
+  color: var(--z-color-35);
+  margin: 0;
+  text-align: right;
+  font-size: 0.7em;
+  line-height: 1.2em;
+  max-width: 120px;
+  white-space: nowrap;
+  overflow-x: hidden;
+}
+
+button.nav__weather-saved {
+  display: flex;
+  flex-direction: row-reverse;
+  align-self: flex-start;
+  margin: 5px 0 0 5px;
+  opacity: 0;
+  line-height: 1em;
+}
+
+button.nav__weather-saved--visible {
+  transition: 0.3s opacity ease;
+  opacity: 1;
+}
+
+.nav__weather-saved span {
+  font-size: 0.8em;
+  padding-left: 5px;
+}
+
+.nav__weather-saved svg {
+  fill: var(--z-color-primary);
+}
+
+.error {
+  margin: 0;
+  font-size: 0.8em;
+  color: var(--z-color-alert);
+}
+
+/* === 3.Geocoder Override === */
+
+#geocoder {
+  width: calc(100% - 70px);
+}
+
+#geocoder .mapboxgl-ctrl-geocoder--input {
+  background-color: var(--z-background-header);
+  border-radius: 4px 0 0 4px;
+  border: 1px solid var(--z-border-header);
+  border-right: none;
+  color: var(--z-color-45);
+  float: left;
+  font-size: 1em;
+  height: 2.1875rem;
+  line-height: normal;
+  padding: 0 0 0 0.625em;
+  width: 85%;
+  width: -webkit-calc(100% - 2.1875rem);
+  width: calc(100% - 2.1875rem);
+  border-radius: 4px 0 0 0;
+  width: calc(100% - 70px);
+}
+
+.suggestions {
+  top: 36px !important;
+}
+
+.mapboxgl-ctrl-geocoder--icon,
+.mapboxgl-ctrl-geocoder--pin-right {
+  display: none !important;
+}
+
+/* === 4.Media Queries === */
+
+@media only screen and (min-width: 768px) {
+  .nav__metadata {
+    flex-direction: row;
+  }
+
+  .nav__weather {
+    padding-bottom: 0;
+  }
+
+  button.nav__weather-saved {
+    flex-direction: row;
+    align-self: flex-end;
+    margin: 5px 5px 0 0;
+  }
+
+  .nav__weather-saved span {
+    padding-right: 5px;
+    padding-left: unset;
+  }
+}
