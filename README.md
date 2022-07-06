@@ -34,7 +34,7 @@ Nach erfolgreichem Start der Middleware kann das Frontend unter dem [localhost](
 
 ## Bermerkung
 
-Aus Sicherheitsgründen sollte im Idealfall die integrierte Middleware (alle Dateien, die sich nicht im "public"-Ordner befinden) separat in einem privaten Repository deployed werden. Um den Scope der Aufgabe nicht zu sprengen, ist hier die Middleware im Frontend-Repository mit eingebunden. Teile der Middleware beruhen auf [OpenSorce-Code](https://github.com/JacksonBates/example-goodreads-api-relay) von Jackson Bates. Im Wetter-Widget werden OpenSource-Icons genutzt ([Dripicons Weather Set](http://demo.amitjakhu.com/dripicons-weather/) von Amit Jakhu). Der freiverfügbare [Mapbox-GL-Geocoder](https://github.com/mapbox/mapbox-gl-geocoder) sorgt für die Autocomplete-Funktionalität.
+Aus Sicherheitsgründen sollte im Idealfall die integrierte Middleware (alle Dateien, die sich nicht im "public"-Ordner befinden) separat in einem privaten Repository deployed werden. Um den Scope der Aufgabe nicht zu sprengen, ist hier die Middleware im Frontend-Repository mit eingebunden. Teile der Middleware beruhen auf [OpenSorce-Code](https://github.com/JacksonBates/example-goodreads-api-relay) von Jackson Bates. Im Wetter-Widget werden OpenSource-Icons genutzt ([Dripicons Weather Set](http://demo.amitjakhu.com/dripicons-weather/) von Amit Jakhu). Der frei verfügbare [Mapbox-GL-Geocoder](https://github.com/mapbox/mapbox-gl-geocoder) sorgt für die Autocomplete-Funktionalität.
 
 ### License
 
