@@ -24,7 +24,7 @@ node app.js
 
 ### Inspizieren des Frontends
 
-Nach erfolgreichem Start der Middleware kann das Frontend unter dem [localhost](http://localhost:3000/) auf dem Port 3000 inspiziert werden.
+Nach erfolgreichem Start der Middleware kann das Frontend unter dem [localhost](http://localhost:3000/) auf dem Port 3000 inspiziert werden. Alternativ kann das Frontend z.B. über die [LiverServer](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) Extension von VisualStudio Code inspiziert werden. Allerdings sind Wetterdaten nur verfügbar, wenn die Middleware gestartet wurde.
 
 ---
 

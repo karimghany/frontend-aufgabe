@@ -65,7 +65,7 @@ function getTime() {
 // Send request on weather data to middleware
 function sendRequest(city) {
   getTime();
-  url = "/weather";
+  url = "http://localhost:3000/weather";
   params;
   // Pass city name or coords for middleware
   if (typeof city === "string" || city instanceof String) {
